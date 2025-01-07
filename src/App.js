@@ -1,34 +1,58 @@
-import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "./App.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function App() {
-  const [tab,setTab] = useState("tab1")
-  const [profileContent,setProfileContent] = useState("")
-  const [settingsContent,setSettingsContent] = useState("")
-  const messageRef=useRef()
+  const [tab, setTab] = useState("tab1");
+  const [profileContent, setProfileContent] = useState("");
+  const [settingsContent, setSettingsContent] = useState("");
+  const messageRef = useRef();
   return (
     <div className="App">
-      <Tabs defaultActiveTab="tab1">
+      {console.log("tab", tab)}
+      <Tabs activetab={tab}>
         <TabList>
-          <Tab id={tab} onKeyUp={() => setTab("tab1")} disabled={tab==="tab1"} >Profile</Tab>
-          <Tab id={tab} onKeyUp={() => setTab("tab2")} disabled={tab==="tab2"}>Settings</Tab>
-          <Tab id={tab} onKeyUp={() => setTab("tab3")} disabled={tab==="tab3"}>Messages</Tab>
+          <Tab
+            id={tab}
+            onKeyUp={() => setTab("tab1")}
+            // className={tab === "tab1" ? "active" : "inactive"}
+          >
+            Profile
+          </Tab>
+          <Tab
+            id={tab}
+            onKeyUp={() => setTab("tab2")}
+            // className={tab === "tab2" ? "active" : "inactive"}
+          >
+            Settings
+          </Tab>
+          <Tab
+            id={tab}
+            onKeyUp={() => setTab("tab3")}
+            // className={tab === "tab3" ? "active" : "inactive"}
+          >
+            Messages
+          </Tab>
         </TabList>
-     
-          <TabPanel id={tab}><h2>Profile Content 
-            </h2>
-            <textarea value={profileContent} onChange={(e) => setProfileContent(e.target.value)}></textarea>
-          </TabPanel>
-          <TabPanel id={tab}>
-            <h2>Settings Content</h2>
-            <textarea value={settingsContent} onChange={(e) => setSettingsContent(e.target.value)}></textarea></TabPanel>
-          <TabPanel id={tab}>
-          <h2>Message Content</h2>
-            <textarea ref={messageRef} value={messageRef.current}></textarea></TabPanel>
 
-          
-       
+        <TabPanel id={tab}>
+          <h2>Profile Content</h2>
+          <textarea
+            value={profileContent}
+            onChange={(e) => setProfileContent(e.target.value)}
+          ></textarea>
+        </TabPanel>
+        <TabPanel id={tab}>
+          <h2>Settings Content</h2>
+          <textarea
+            value={settingsContent}
+            onChange={(e) => setSettingsContent(e.target.value)}
+          ></textarea>
+        </TabPanel>
+        <TabPanel id={tab}>
+          <h2>Message Content</h2>
+          <textarea ref={messageRef} value={messageRef.current}></textarea>
+        </TabPanel>
       </Tabs>
     </div>
   );

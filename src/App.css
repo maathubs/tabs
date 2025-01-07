@@ -54,3 +54,7 @@ li {
   background: antiquewhite;
   cursor: pointer;
 }
+.inactive {
+  background: cadetblue;
+  color: gray;
+}
